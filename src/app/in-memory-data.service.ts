@@ -4,7 +4,7 @@ export class InMemoryDataService implements InMemoryDbService {
   createDb() {
     let heroes = [
       {id: 11, name: 'Mr. Nice'},
-      {id: 12, name: 'Narco'},
+      {id: 12, name: 'Sparkle'},
       {id: 13, name: 'Bombasto'},
       {id: 14, name: 'Celeritas'},
       {id: 15, name: 'Magneta'},
