@@ -9,6 +9,7 @@ import { HeroDetailComponent }  from './hero-detail.component';
 import { HeroesComponent }      from './heroes.component';
 import { HeroService }          from './hero.service';
 import { HeroSearchComponent }  from './hero-search.component';
+import { LoggerService }        from './logger.service';
 
 import { AppRoutingModule }     from './app-routing.module';
 
@@ -32,8 +33,11 @@ import { InMemoryDataService }  from './in-memory-data.service';
     HeroSearchComponent
   ],
   providers:      [
-    HeroService
+    HeroService,
+    LoggerService
   ],
+  // the main application view, called the root component, that hosts all other app views.
+  // Only the root module should set this bootstrap property.
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }

@@ -3,13 +3,15 @@ import { Headers, Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 import { Hero } from './hero';
+import { LoggerService } from './logger.service';
 
 @Injectable()
 export class HeroService {
 
   private heroesUrl = 'api/heroes';  // URL to web api
   private headers = new Headers({'Content-Type': 'application/json'});
-  constructor(private http: Http) { }
+  constructor(private http: Http,
+              private logger: LoggerService) { }
 
   // The HeroService could get Hero data from anywhere—a web service, local storage, or a mock data source.
   // Removing data access from the component means you can change your mind about the implementation anytime,
@@ -25,10 +27,12 @@ export class HeroService {
   }
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error); // Demo logs the error to the console; in real life, you'd handle the error in code.
+    this.logger.error(`An error occurred` + error);
     return Promise.reject(error.message || error);
   }
 
   getHero(id: number): Promise<Hero> {
+    this.logger.log(`Entering getHero`);
     const url = `${this.heroesUrl}/${id}`;
     return this.http.get(url)
       .toPromise()
